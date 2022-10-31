@@ -3,13 +3,14 @@ import './index.scss'
 // Create component for button
 class Button extends React.Component {
   render() {
-    const { onClick } = this.props;
+    const { onClick ,disabled} = this.props;
     return (
       <fieldset>
         <button
           type={this.props.type || 'button'}
           value={this.props.value || null}
           onClick={onClick}
+          disabled={disabled}
         >
           {this.props.text}
         </button>
@@ -100,6 +101,7 @@ class Form extends React.Component {
     this.state = {
       isSubmitted: false,
       isError: false,
+      isLoading: true,
       paymentInfo: {
         email: "",
         cardNumber: "",
@@ -112,15 +114,19 @@ class Form extends React.Component {
 
   onSubmit = () => {
     const { paymentInfo: { email, cardNumber, date, cvc, nameOfCard } } = this.state;
+    this.setState({
+      isLoading: true
+    })
     if (email && cardNumber && date && cvc && nameOfCard)
-      this.setState({
+      setTimeout(() => this.setState({
         isSubmitted: true,
         isError: false
-      })
+      }), 7000)
     else
       this.setState({
         isSubmitted: false,
-        isError: true
+        isError: true,
+        isLoading: false
       })
   }
   onChange = (e) => {
@@ -132,7 +138,7 @@ class Form extends React.Component {
     })
   }
   render() {
-    const { isSubmitted, isError, paymentInfo } = this.state;
+    const { isSubmitted, isError, paymentInfo, isLoading } = this.state;
     return (
       <div>
         {
@@ -146,66 +152,76 @@ class Form extends React.Component {
               <img src={require('./../../assets/icon/pittboss logo.png')} alt="" className='logo' />
             </div>
             <h1>Payment Information</h1>
-            <Input
-              hasLabel='true'
-              htmlFor='emailInput'
-              label='Email'
-              required='true'
-              type='email'
-              name="email"
-              onChange={this.onChange}
-              value={paymentInfo.email}
-            />
-            <fieldset>
-              <Label
-                hasLabel={'true'}
-                htmlFor={"card-information"}
-                label={"Card information"}
-              />
-              <div className="number-div">
-                <input
-                  id={"card-info"}
-                  name={"cardNumber"}
-                  placeholder={"1234 1234 1234 1234"}
-                  type={'text'}
-                  required
-                  className="border-bottom-0 number-field"
-                  onChange={this.onChange}
-                  value={paymentInfo.cardNumber}
-                />
-                <img className='payment-icon' src={require('./../../assets/icon/payment-icon.png')} alt="" />
-              </div>
-              <div className='flex-div'>
-                <input type="number" required className='date' placeholder='MM/YY' name='date' onChange={this.onChange} value={paymentInfo.date} />
-                <input type="number" required className='date' placeholder='CVC' name='cvc' onChange={this.onChange} value={paymentInfo.cvc} />
-              </div>
-            </fieldset>
-            <Input
-              hasLabel='true'
-              htmlFor='textInput'
-              label='Name of Card'
-              required='true'
-              type='text'
-              name="nameOfCard"
-              onChange={this.onChange}
-              value={paymentInfo.nameOfCard}
-            />
-            <Select
-              hasLabel='true'
-              htmlFor='select'
-              label='Country or region'
-              options='United States, United kingdom, Togo, China, Ukraine'
-              required='true'
-            />
+            {
+              isLoading ?
+              <div className='loader-contaner'>
+                <div class="loader"></div>
+                </div>
+                :
+                <>
+                  <Input
+                    hasLabel='true'
+                    htmlFor='emailInput'
+                    label='Email'
+                    required='true'
+                    type='email'
+                    name="email"
+                    onChange={this.onChange}
+                    value={paymentInfo.email}
+                  />
+                  <fieldset>
+                    <Label
+                      hasLabel={'true'}
+                      htmlFor={"card-information"}
+                      label={"Card information"}
+                    />
+                    <div className="number-div">
+                      <input
+                        id={"card-info"}
+                        name={"cardNumber"}
+                        placeholder={"1234 1234 1234 1234"}
+                        type={'text'}
+                        required
+                        className="border-bottom-0 number-field"
+                        onChange={this.onChange}
+                        value={paymentInfo.cardNumber}
+                      />
+                      <img className='payment-icon' src={require('./../../assets/icon/payment-icon.png')} alt="" />
+                    </div>
+                    <div className='flex-div'>
+                      <input type="number" required className='date' placeholder='MM/YY' name='date' onChange={this.onChange} value={paymentInfo.date} />
+                      <input type="number" required className='date' placeholder='CVC' name='cvc' onChange={this.onChange} value={paymentInfo.cvc} />
+                    </div>
+                  </fieldset>
+                  <Input
+                    hasLabel='true'
+                    htmlFor='textInput'
+                    label='Name of Card'
+                    required='true'
+                    type='text'
+                    name="nameOfCard"
+                    onChange={this.onChange}
+                    value={paymentInfo.nameOfCard}
+                  />
+                  <Select
+                    hasLabel='true'
+                    htmlFor='select'
+                    label='Country or region'
+                    options='United States, United kingdom, Togo, China, Ukraine'
+                  />
 
-            {isError && <p className='error'>Fill all required fields</p>
+                  {isError && <p className='error'>Fill all required fields</p>
+                  }
+                </>
             }
             <Button
               type='submit'
               value='submit'
               text='Pay Now'
               onClick={this.onSubmit}
+              disabled={isLoading}
             />
+
           </form>
         }
 
