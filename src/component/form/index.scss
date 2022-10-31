@@ -1,0 +1,147 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  font: 100% / 1.414 sans-serif;
+}
+
+form {
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 320px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 30px;
+}
+.logo-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.logo{
+  width: 200px;
+}
+h1 {
+  text-align: center;
+  color: #e41424;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+
+  &+& {
+    margin-top: 24px;
+  }
+}
+
+label {
+  margin-bottom: 8px;
+  display: block;
+  color: hsla(0,0%,10%,.7);
+  font-weight: 600;
+  font-size: 13px;
+
+
+}
+
+input:not([type=checkbox]):not([type=radio]),
+select,
+textarea {
+  padding: 7px;
+  width: 95%;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px
+  ;
+  transition: border-bottom-color .15s ease-in;
+
+  &:focus {
+    outline: 0;
+    border-color: #f39394;
+  }
+}
+
+input[type=checkbox],
+input[type=radio] {
+  margin-right: 8px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  font-weight: 600;
+  padding: 10px 30px;
+  font-size: 17px;
+  color: #fff;
+  background: linear-gradient(90deg, #f39394 0%, #e41424 90%);
+  border-radius: 20px;
+  border: 0;
+  cursor: pointer;
+  transition: background-color .15s ease-in;
+
+  &:focus:active {
+    background-color: darken(#e41424, 8%);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    background-color: lighten(#e41424, 15%);
+  }
+}
+.number-div{
+  position: relative;
+}
+.number-field{
+  padding-right: 123px !important;
+  display: block;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+.payment-icon{
+  position: absolute;
+  top: 5px;
+  right: 7px;
+}
+.submit-message {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: green;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h4{
+  margin-bottom: 150px;
+
+  }
+}
+.border-bottom-0{
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom: 0px !important;
+}
+.date{
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+.flex-div{
+  display: flex;
+  justify-content: space-between;
+}
+
+.error{
+  color: red;
+  text-align: center;
+}
