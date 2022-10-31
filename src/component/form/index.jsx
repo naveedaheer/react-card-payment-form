@@ -138,7 +138,7 @@ class Form extends React.Component {
         {
           isSubmitted ? <div className='submit-message'>
             <h4>
-              Payment Done Successfully
+              Payment Successful
             </h4>
           </div> : <form method='' action=''>
             <div className='logo-div'>
