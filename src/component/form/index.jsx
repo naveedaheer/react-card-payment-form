@@ -193,7 +193,7 @@ class Form extends React.Component {
               hasLabel='true'
               htmlFor='select'
               label='Country or region'
-              options='United State, United kingdom, Togo, taiwan, Ukraine'
+              options='United States, United kingdom, Togo, China, Ukraine'
               required='true'
             />
 
