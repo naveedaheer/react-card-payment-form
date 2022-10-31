@@ -101,7 +101,7 @@ class Form extends React.Component {
     this.state = {
       isSubmitted: false,
       isError: false,
-      isLoading: true,
+      isLoading: false,
       paymentInfo: {
         email: "",
         cardNumber: "",
