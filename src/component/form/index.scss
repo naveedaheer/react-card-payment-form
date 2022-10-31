@@ -114,17 +114,16 @@ button {
   right: 7px;
 }
 .submit-message {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: green;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  h4{
-  margin-bottom: 150px;
-
+  flex-direction: column;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #7AC043;
+  height: 100vh;
+  h4 {
+    margin-top: -5px;
   }
 }
 .border-bottom-0{

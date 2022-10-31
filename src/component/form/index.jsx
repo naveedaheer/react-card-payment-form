@@ -137,6 +137,7 @@ class Form extends React.Component {
       <div>
         {
           isSubmitted ? <div className='submit-message'>
+            <img src={require('./../../assets/icon/check-300x300.png')} width="200" alt="check" />
             <h4>
               Payment Successful
             </h4>
